@@ -4,13 +4,30 @@ from models.artist import Artist
 from models.album import Album
 
 def save(artist):
-    pass
+    sql = "INSERT INTO artists (name) VALUES (%s) RETURNING *"
+    values = [artist.name]
+    results = run_sql(sql, values)
+    id = results[0]['id']
+    artist.id = id
+    return artist
+
+   
 
 def delete_all():
-    pass
+    sql = "DELETE FROM artists"
+    run_sql(sql)
 
 def select(id):
-    pass
+   sql = "DELETE FROM artists WHERE id = %s"
+   values = [id]
+   run_sql(sql, values)
 
 def albums(artist):
-    pass
+    albums = []
+    sql = "SELECT * FROM albums WHERE id = %s"
+    values = [id]
+    results = run_sql(sql)
+
+    
+
+
