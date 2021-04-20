@@ -24,7 +24,7 @@ def select(id):
 
     if result is not None:
         artist = artist_repository.select(result['artist_id'])
-        album = Album(result['album_name'], artist, result['year'])
+        album = Album(result['album_name'], result['year'], artist)
 
     return album
 
